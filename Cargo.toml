@@ -1,0 +1,21 @@
+[workspace]
+members = ["fundamentals/*", "dsa/*", "projects/*"]
+
+resolver = "2"
+
+[workspace.package]
+edition = "2021"
+license = "MIT"
+authors = ["Cu Thanh Cam"]
+publish = false
+
+[workspace.dependencies]
+anyhow = "1"
+thiserror = "1"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+all = "warn"
+pedantic = "warn"
