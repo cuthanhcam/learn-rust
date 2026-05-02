@@ -24,7 +24,7 @@
 # ---------------------------------------------------------------------------
 
 # Visual Studio Code
-# .vscode/
+.vscode/
 
 # JetBrains (CLion / IntelliJ Rust plugin)
 .idea/
