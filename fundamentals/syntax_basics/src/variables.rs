@@ -5,5 +5,5 @@ pub fn run() {
     let mut y = 10;
 
     y += 1;
-    println!("x: {}, u: {}", x, y);
+    println!("x: {x}, y: {y}");
 }
