@@ -117,3 +117,7 @@ docker-compose.override.yml
 # - Cargo.lock SHOULD be committed for apps (this repo is an app/learning repo)
 # - Keep repo minimal and deterministic
 ###############################################################################
+
+# Ignore compiled binaries and debug files
+*.exe
+*.pdb
