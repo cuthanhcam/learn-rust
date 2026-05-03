@@ -5,9 +5,9 @@ pub fn run() {
 
     // if / else
     if number > 5 {
-        println!("{} is greater than 5", number);
+        println!("{number} is greater than 5");
     } else {
-        println!("{} is not greater than 5", number);
+        println!("{number} is not greater than 5");
     }
 
     // loop
@@ -19,17 +19,17 @@ pub fn run() {
         }
     }
 
-    println!("loop ended at {}", counter);
+    println!("loop ended at {counter}");
 
     // for
     for i in 0..5 {
-        println!("for: {}", i);
+        println!("for: {i}");
     }
 
     // while
     let mut n = 3;
     while n > 0 {
-        println!("while: {}", n);
+        println!("while: {n}");
         n -= 1;
     }
 

@@ -2,10 +2,10 @@ pub fn run() {
     println!("\n-- Functions --");
 
     let sum = add(5, 10);
-    println!("5 + 10 = {}", sum);
+    println!("5 + 10 = {sum}");
 
     let squared = square(4);
-    println!("4^2 = {}", squared);
+    println!("4^2 = {squared}");
 
     println!();
 }
