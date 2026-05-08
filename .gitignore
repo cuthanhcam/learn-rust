@@ -19,6 +19,10 @@
 # (For learning repo → KEEP IT)
 # Cargo.lock
 
+# Draft / temporary writing folders anywhere
+**/temp/
+**/ref/
+
 # ---------------------------------------------------------------------------
 # IDE & Editor Files
 # ---------------------------------------------------------------------------
