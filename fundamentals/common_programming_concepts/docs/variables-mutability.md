@@ -1,8 +1,8 @@
 # Variables and Mutability in Rust
 
-Rust enforces immutability by default, which is a core part of its safety model.
+Rust enforces immutability by default. That is one of the main reasons Rust can make so many guarantees at compile time.
 
-Instead of allowing unrestricted mutation like many languages, Rust forces you to **explicitly declare when and where state can change**.
+Instead of allowing unrestricted mutation like many languages, Rust forces you to **declare exactly when and where state can change**.
 
 This leads to:
 
@@ -12,6 +12,8 @@ This leads to:
 - better concurrency guarantees
 
 Understanding variables, mutability, constants, and shadowing is essential before moving into ownership and borrowing.
+
+The demo code for this lesson lives in [variables_mutability.rs](../src/variables_mutability.rs).
 
 ---
 
@@ -24,9 +26,8 @@ Understanding variables, mutability, constants, and shadowing is essential befor
 5. Scope Shadowing
 6. Shadowing for Type Transformation
 7. Mutability and Ownership
-8. Practical Shadowing Pattern
-9. `mut` vs Shadowing
-10. Summary
+8. `mut` vs Shadowing
+9. Summary
 
 ---
 
@@ -43,6 +44,8 @@ This means:
 
 - once assigned, a value cannot change
 - any reassignment is rejected at compile time
+
+The binding can still be replaced by creating a new one with the same name, but that is shadowing, not mutation.
 
 ### Why this matters
 
@@ -66,6 +69,8 @@ counter += 5;
 
 To allow modification, you must explicitly opt in using `mut`.
 
+That choice applies to the binding itself, not to every value in the program.
+
 ### Key idea
 
 Rust does NOT remove safety when you use `mut`.
@@ -86,6 +91,8 @@ message.push_str(", Rust!");
 
 Mutation is allowed, but still fully controlled by Rust’s ownership system.
 
+In practice, `mut` is used when the same value needs to change over time: counters, buffers, accumulators, and user input that gets updated in place.
+
 ---
 
 ## Constants
@@ -100,6 +107,8 @@ Constants represent values that:
 - never change
 - are computed at compile time
 - are globally accessible (if needed)
+
+Constants must have an explicit type and follow upper-case naming by convention.
 
 ### Key differences from variables
 
@@ -127,6 +136,8 @@ Shadowing means:
 
 > creating a new variable with the same name
 
+The new binding replaces the old one in the current scope, but the old binding is still unaffected outside that scope.
+
 ### Important distinction
 
 Shadowing is NOT mutation.
@@ -144,6 +155,7 @@ It is used for:
 - step-by-step transformations
 - keeping variable names clean
 - avoiding unnecessary temporary names
+- changing the type of a value while reusing the same logical name
 
 ---
 
@@ -171,6 +183,8 @@ When the inner scope ends:
 - the outer binding becomes visible again
 
 This enables isolated transformations without side effects.
+
+This is useful when a temporary calculation should not leak into the rest of the function.
 
 ---
 
@@ -200,6 +214,8 @@ raw input → cleaned input → parsed value → validated value
 
 Each step creates a safer representation of the data.
 
+This is especially common when the same logical value moves through multiple forms: a string from input, a trimmed string, a parsed number, and then a validated domain value.
+
 ---
 
 ## Mutability and Ownership
@@ -221,25 +237,7 @@ Even mutable data must follow:
 
 > Mutation is allowed, but never unsafe.
 
----
-
-## Practical Shadowing Pattern
-
-```rust
-let input = " 42 ";
-let input = input.trim();
-let input: i32 = input.parse().expect("Failed to parse");
-let input = input * 2;
-```
-
-This pattern is common in real Rust code.
-
-### Why it is preferred
-
-- avoids temporary variable clutter
-- keeps transformations linear
-- improves readability
-- keeps scope tight
+The lesson source demonstrates this with a `String` that is extended in place using `push_str`.
 
 ---
 
@@ -249,7 +247,7 @@ This pattern is common in real Rust code.
 let mut value = 5;
 value += 1;
 
-let value = value.to_string();
+let value = format!("value = {value}");
 ```
 
 ### `mut`
@@ -258,11 +256,15 @@ let value = value.to_string();
 - same type throughout lifetime
 - used for incremental changes
 
+Examples: counters, toggles, string buffers, caches that update in place.
+
 ### Shadowing
 
 - creates new variable
 - can change type
 - used for transformations
+
+Examples: trimming input, parsing text into numbers, converting between representations.
 
 ---
 
@@ -293,6 +295,9 @@ let value = value.to_string();
     - explicit mutation
     - small scopes
     - transformation via shadowing
+
+8. Choose the right tool for the job
+   → `mut` for in-place updates, shadowing for staged conversion
 
 ---
 

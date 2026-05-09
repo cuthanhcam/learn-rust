@@ -1,8 +1,8 @@
-//! This module demonstrates how Rust handles.
+//! This module demonstrates how Rust handles variable bindings and state changes.
 //!
 //! - immutable variables (default)
 //! - mutable variables (`mut`)
-//! - constants
+//! - constants with explicit types
 //! - shadowing
 //! - scope-based shadowing
 //! - type transformation via shadowing
@@ -34,6 +34,7 @@ fn immutable_variables() {
 
     let x = 5;
     println!("Initial value of x: {x}");
+    println!("This binding is read-only unless it is replaced with a new binding.");
 
     // x = 10; // compile-time error: immutable variable
 
@@ -53,12 +54,18 @@ fn mutable_variables() {
     score -= 25;
 
     println!("score after decrement: {score}");
+
+    let mut message = String::from("Hello");
+    message.push_str(", Rust!");
+    println!("message after push_str: {message}");
 }
 
 /// 3. Constants
 fn constants_example() {
     println!("\n[3] Constants");
 
+    println!("SECONDS_PER_MINUTE = {SECONDS_PER_MINUTE}");
+    println!("MINUTES_PER_HOUR = {MINUTES_PER_HOUR}");
     println!("3 hours = {THREE_HOURS_IN_SECONDS} seconds");
     println!("Max players = {MAX_PLAYERS}");
 }
@@ -94,7 +101,7 @@ fn shadowing_with_scope() {
 
 /// 6. Type Transformation via Shadowing
 fn shadowing_type_transformation() {
-    println!("\n[6] Shawdowing Type Change");
+    println!("\n[6] Shadowing Type Change");
 
     let spaces = "   ";
     println!("spaces (str): '{spaces}'");
@@ -102,7 +109,9 @@ fn shadowing_type_transformation() {
     let spaces = spaces.len(); // shadows previous 'spaces' with a new type (usize)
     println!("spaces (len): {spaces}");
 
-    // mut version would fail:
+    println!("Shadowing is useful when each step produces a different type.");
+
+    // mut version would fail because the type must stay the same:
     // let mut spaces = "   ";
     // spaces = spaces.len(); // compile-time error: cannot assign usize to &str
 }
@@ -116,6 +125,8 @@ fn mutability_and_ownership() {
 
     message.push_str(", world!");
     println!("{message}");
+
+    println!("The String can change because this binding owns the heap data.");
 }
 
 /// 8. mut vs Shadowing
@@ -128,6 +139,8 @@ fn mut_vs_shadowing() {
     value += 5; // modifies the same variable
     println!("After mutation: {value}");
 
-    let value = value.to_string(); // shadows previous 'value' with a new variable of type String
+    let value = format!("value = {value}"); // shadows previous 'value' with a new variable of type String
     println!("After shadowing with type change: {value}");
+
+    println!("Use mut when the value changes in place; use shadowing when the shape changes.");
 }

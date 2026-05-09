@@ -20,13 +20,15 @@ These concepts establish the mental models required before learning:
 
 Learn:
 
-- immutable bindings
-- mutable variables
-- constants
-- shadowing
-- scope rules
+- immutable bindings and compile-time safety
+- mutable variables with `mut`
+- constants and explicit types
+- shadowing as a new binding, not mutation
+- scope rules and type-changing transformations
 
 → [Detailed Notes](../../fundamentals/common_programming_concepts/docs/variables-mutability.md)
+
+→ [Source Demo](../../fundamentals/common_programming_concepts/src/variables_mutability.rs)
 
 ---
 
