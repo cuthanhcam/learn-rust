@@ -36,13 +36,14 @@ Learn:
 
 Learn:
 
-- scalar types
-- compound types
-- tuples
-- arrays
-- type annotations
+- scalar types, including integers, floats, Booleans, and characters
+- compound types, especially tuples and arrays
+- type annotations for ambiguous cases like parsing
+- fixed-size collections and runtime bounds checks
 
 → [Detailed Notes](../../fundamentals/common_programming_concepts/docs/data-types.md)
+
+→ [Source Demo](../../fundamentals/common_programming_concepts/src/data_types.rs)
 
 ---
 
@@ -50,10 +51,41 @@ Learn:
 
 Learn:
 
-- function definitions
-- parameters
-- return values
-- expressions
-- statements
+- defining and calling functions
+- typed parameters
+- statements versus expressions
+- return values and early returns
 
 → [Detailed Notes](../../fundamentals/common_programming_concepts/docs/functions.md)
+
+→ [Source Demo](../../fundamentals/common_programming_concepts/src/functions.rs)
+
+---
+
+## Comments
+
+Learn:
+
+- line comments with `//`
+- trailing comments
+- block comments with `/* */`
+- documentation comments with `///`
+
+→ [Detailed Notes](../../fundamentals/common_programming_concepts/docs/comments.md)
+
+→ [Source Demo](../../fundamentals/common_programming_concepts/src/comments.rs)
+
+---
+
+## Control Flow
+
+Learn:
+
+- `if` expressions and `else if` chains
+- using `if` inside a `let` statement
+- `loop`, `while`, and `for`
+- loop return values and loop labels
+
+→ [Detailed Notes](../../fundamentals/common_programming_concepts/docs/control-flow.md)
+
+→ [Source Demo](../../fundamentals/common_programming_concepts/src/control_flow.rs)
