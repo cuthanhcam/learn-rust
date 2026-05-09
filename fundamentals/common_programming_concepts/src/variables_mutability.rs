@@ -23,6 +23,9 @@ pub fn run() {
     constants_example();
     shadowing_example();
     shadowing_with_scope();
+    shadowing_type_transformation();
+    mutability_and_ownership();
+    mut_vs_shadowing();
 }
 
 /// 1. Immutable Variables
@@ -87,4 +90,44 @@ fn shadowing_with_scope() {
     }
 
     println!("Outer scope x after inner block: {x}");
+}
+
+/// 6. Type Transformation via Shadowing
+fn shadowing_type_transformation() {
+    println!("\n[6] Shawdowing Type Change");
+
+    let spaces = "   ";
+    println!("spaces (str): '{spaces}'");
+
+    let spaces = spaces.len(); // shadows previous 'spaces' with a new type (usize)
+    println!("spaces (len): {spaces}");
+
+    // mut version would fail:
+    // let mut spaces = "   ";
+    // spaces = spaces.len(); // compile-time error: cannot assign usize to &str
+}
+
+/// 7. Mutability + Ownership
+fn mutability_and_ownership() {
+    println!("\n[7] Mutability + Ownership");
+
+    let mut message = String::from("Hello");
+    println!("{message}");
+
+    message.push_str(", world!");
+    println!("{message}");
+}
+
+/// 8. mut vs Shadowing
+fn mut_vs_shadowing() {
+    println!("\n[8] mut vs Shadowing");
+
+    let mut value = 10;
+    println!("Initial mutable value: {value}");
+
+    value += 5; // modifies the same variable
+    println!("After mutation: {value}");
+
+    let value = value.to_string(); // shadows previous 'value' with a new variable of type String
+    println!("After shadowing with type change: {value}");
 }
