@@ -85,3 +85,218 @@ message.push_str(", Rust!");
 ```
 
 Mutation is allowed, but still fully controlled by Rust’s ownership system.
+
+---
+
+## Constants
+
+```rust
+const MAX_PLAYERS: u8 = 4;
+const SECONDS_PER_MINUTE: u32 = 60;
+```
+
+Constants represent values that:
+
+- never change
+- are computed at compile time
+- are globally accessible (if needed)
+
+### Key differences from variables
+
+- Always immutable (no `mut`)
+- Must have explicit types
+- Inlined by compiler (no runtime cost)
+
+### Use cases
+
+- configuration values
+- limits and thresholds
+- mathematical constants
+
+---
+
+## Shadowing
+
+```rust
+let x = 5;
+let x = x + 1;
+let x = x * 2;
+```
+
+Shadowing means:
+
+> creating a new variable with the same name
+
+### Important distinction
+
+Shadowing is NOT mutation.
+
+| Feature      | mut | shadowing      |
+| ------------ | --- | -------------- |
+| Reuses value | Yes | Yes (as input) |
+| New variable | No  | Yes            |
+| Type change  | No  | Yes            |
+
+### Why shadowing exists
+
+It is used for:
+
+- step-by-step transformations
+- keeping variable names clean
+- avoiding unnecessary temporary names
+
+---
+
+## Scope Shadowing
+
+```rust
+let x = 10;
+
+{
+    let x = x * 2;
+    println!("{x}");
+}
+
+println!("{x}");
+```
+
+Rust uses lexical scoping:
+
+- variables exist only inside their scope
+- inner scopes can shadow outer variables
+
+When the inner scope ends:
+
+- the inner binding is dropped
+- the outer binding becomes visible again
+
+This enables isolated transformations without side effects.
+
+---
+
+## Shadowing for Type Transformation
+
+```rust
+let spaces = "   ";
+let spaces = spaces.len();
+```
+
+Shadowing allows changing the type of a variable.
+
+This is NOT possible with `mut`:
+
+```rust
+let mut spaces = "   ";
+spaces = spaces.len(); // error: type mismatch
+```
+
+### Common real-world pattern
+
+Shadowing is often used in pipelines:
+
+```
+raw input → cleaned input → parsed value → validated value
+```
+
+Each step creates a safer representation of the data.
+
+---
+
+## Mutability and Ownership
+
+```rust
+let mut message = String::from("Hello");
+message.push_str(", Rust!");
+```
+
+Mutability does not bypass Rust’s ownership system.
+
+Even mutable data must follow:
+
+- single ownership rules
+- borrowing rules
+- no invalid references
+
+### Key idea
+
+> Mutation is allowed, but never unsafe.
+
+---
+
+## Practical Shadowing Pattern
+
+```rust
+let input = " 42 ";
+let input = input.trim();
+let input: i32 = input.parse().expect("Failed to parse");
+let input = input * 2;
+```
+
+This pattern is common in real Rust code.
+
+### Why it is preferred
+
+- avoids temporary variable clutter
+- keeps transformations linear
+- improves readability
+- keeps scope tight
+
+---
+
+## `mut` vs Shadowing
+
+```rust
+let mut value = 5;
+value += 1;
+
+let value = value.to_string();
+```
+
+### `mut`
+
+- modifies same variable
+- same type throughout lifetime
+- used for incremental changes
+
+### Shadowing
+
+- creates new variable
+- can change type
+- used for transformations
+
+---
+
+## Summary
+
+### Core principles
+
+1. Variables are immutable by default
+   → Rust favors safety over convenience
+
+2. `mut` enables controlled mutation
+   → mutation must always be explicit
+
+3. Constants are compile-time values
+   → no runtime cost
+
+4. Shadowing creates new bindings
+   → useful for transformations
+
+5. Shadowing allows type changes
+   → unlike `mut`
+
+6. Rust enforces safety at compile time
+   → fewer runtime errors
+
+7. Idiomatic Rust prefers:
+    - immutability by default
+    - explicit mutation
+    - small scopes
+    - transformation via shadowing
+
+---
+
+## Reference
+
+- [https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html](https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html)
+- [https://doc.rust-lang.org/rust-by-example/variable.html](https://doc.rust-lang.org/rust-by-example/variable.html)
