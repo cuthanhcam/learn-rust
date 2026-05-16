@@ -6,6 +6,7 @@ This directory contains learning materials for Rust fundamentals and guided tuto
 
 Core concepts with practical examples:
 
+- [Understanding Ownership](fundamentals/ownership.md)
 - [Syntax Basics](fundamentals/syntax-basics.md)
 - [Guessing Game](fundamentals/guessing-game.md)
 
@@ -27,5 +28,6 @@ Step-by-step guides for setting up and working with Rust projects:
 3. [Naming Conventions](tutorials/naming-conventions.md)
 4. [Comments and Documentation](tutorials/comments-and-docs.md)
 5. [Running a Rust Project](tutorials/running-a-project.md)
-6. [Syntax Basics](fundamentals/syntax-basics.md)
-7. [Guessing Game](fundamentals/guessing-game.md)
+6. [Understanding Ownership](fundamentals/ownership.md)
+7. [Syntax Basics](fundamentals/syntax-basics.md)
+8. [Guessing Game](fundamentals/guessing-game.md)
