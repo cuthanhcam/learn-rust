@@ -4,6 +4,14 @@ This documentation covers the basics of Rust syntax and foundational concepts le
 
 The goal is to understand simple syntax elements in Rust and how they translate into working programs.
 
+## Learning Goals
+
+- explain immutable vs mutable bindings
+- identify scalar and compound data types
+- write and call typed functions
+- use expression-based control flow with confidence
+- read beginner Rust code and predict behavior
+
 ---
 
 # Table of Contents
@@ -122,3 +130,12 @@ Rust emphasizes:
 
 - High performance (comparable to C/C++)
 - Safety (compile-time guarantees instead of runtime checks)
+
+---
+
+## Common Pitfalls
+
+- forgetting `mut` when reassigning a variable
+- expecting `if` to accept non-boolean conditions
+- mixing statement and expression forms by accident
+- assuming tuple/array indexing never fails at runtime

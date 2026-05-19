@@ -121,3 +121,12 @@ Ownership is not just one topic in Rust. It is the model that explains:
 - why Rust can catch many bugs before runtime
 
 If the chapter feels abstract at first, that is normal. The key is to connect each rule back to a concrete question: who owns the data, who can use it, and when does it get cleaned up?
+
+---
+
+## Common Pitfalls
+
+- trying to use values after move
+- returning references to temporary local data
+- using owned `String` in APIs where `&str` is enough
+- mixing mutable and immutable borrows in the same scope
