@@ -11,3 +11,8 @@ Structs are a key step from simple values to domain modeling in Rust.
 - understand ownership behavior during struct updates
 - refactor free functions into methods
 - use associated functions as constructors
+
+## Sections
+
+- [Defining and Instantiating Structs](./defining-and-instantiating-structs.md)
+- [Example Program Using Structs](./example-program.md)
