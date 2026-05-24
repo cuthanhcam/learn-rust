@@ -10,7 +10,7 @@ Enums let you encode valid states in the type system. Pattern matching then forc
 - [The match Control Flow Construct](./match-control-flow.md)
 - [Consise Control Flow with if let and let...else](concise-control-flow.md)
 
-#3 Learning Goals
+## Learning Goals
 
 - Models finite state using enum variants
 - Write exhaustive `match` expressions
